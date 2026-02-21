@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TikuOS</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --text: #0b0b0c;
+      --muted: #6b7280;
+      --bg: #ffffff;
+      --focus: #111;
+      --border: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      margin: 0;
+      padding: 3.5rem 2rem;
+      color: var(--text);
+      background: var(--bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
+      font-size: 0.88rem;
+      line-height: 1.65;
+      text-wrap: pretty;
+    }
+    :focus-visible {
+      outline: 1px dotted var(--focus);
+      outline-offset: .2em;
+      border-radius: 2px;
+    }
+
+    main { max-width: 40rem; margin: 0 auto; }
+
+    header {
+      max-width: 40rem;
+      margin: 0 auto 2.5rem;
+      padding-bottom: 1.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h1, h2, h3 { margin: 0 0 .6em; line-height: 1.15; }
+    p { margin: 0 0 1.3em; }
+    a { color: inherit; text-decoration: underline; text-underline-offset: .2em; }
+    a:hover { text-decoration-style: dotted; }
+
+    .headline {
+      font-family: "Chakra Petch", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+      margin-bottom: .4em;
+    }
+
+    .subtitle {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .gradient-text {
+      position: relative;
+      display: inline-block;
+      color: #000;
+      background: #fff;
+      border: 1px solid #fff;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .gradient-text::after {
+      content: "";
+      position: absolute; inset: -40% -40%;
+      background: linear-gradient(90deg, #565151, #d2caca);
+      mix-blend-mode: screen;
+      transform: rotate(0deg);
+      animation: rotate 8s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes rotate { to { transform: rotate(360deg); } }
+
+    section { margin-bottom: 2.2rem; }
+    section h2 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted);
+      margin-bottom: .8em;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: .4em;
+    }
+
+    ul { padding-left: 1.1rem; margin: 0 0 1.2em; }
+    li { margin: .5rem 0; list-style: square; line-height: 1.6; }
+
+    .muted { color: var(--muted); }
+    footer {
+      max-width: 40rem;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 700px) {
+      body { padding: 1.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="headline gradient-text">TikuOS: Simple. Ubiquitous. Intelligence, Everywhere.</h1>
+    <p class="subtitle">An open-source operating system for physical AI endpoints. Deploy-and-forget devices that run for years on a coin cell or indefinitely on harvested energy.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Vision</h2>
+      <p>Imagine a world where every object has its own small mind — always sensing, thinking, but never intruding. TikuOS makes this possible. We are building a silent layer of intelligence over physical reality — tiny minds embedded in places, each with a memory and a voice. These quiet custodians offer awareness, context, and guidance to the people, robots, and AI agents that move through the world. Our goal is not to make the world "smart." It is to make our environment a responsive and intuitive partner in our lives.</p>
+    </section>
+
+    <section>
+      <h2>Technology</h2>
+      <p>TikuOS is designed from the ground up for devices that operate on microwatts — not milliwatts, not watts. Where conventional operating systems waste power on heavyweight kernels and periodic interrupts, TikuOS is event-driven, energy-aware, and built for controllers with kilobytes of memory, not megabytes. It natively supports communication technologies that operate below the power floor of conventional wireless — backscatter, tunnel diode transmitters, and other radios that don't exist in any other OS. The result: devices you deploy and forget. For a decade. Or forever.</p>
+    </section>
+
+    <section>
+      <h2>Origins</h2>
+      <p>TikuOS is the result of a decade of research across three continents, recognized by flagship awards from Google and ABB, supported by national agencies across Asia and Europe, and validated through peer-reviewed publications at the top scientific venues in the field. It is built on hard-won lessons from real hardware, real deployments, and real failures.</p>
+    </section>
+
+    <section>
+      <h2>Values</h2>
+      <ul>
+        <li><b>The best idea wins.</b> We are driven by the truth of the data and rigorous, open debate. Credentials don't settle arguments — evidence does.</li>
+        <li><b>Genius is everywhere.</b> Brilliance has no single race, gender, or pedigree. We actively seek the outsiders, the unconventional thinkers, the ones who see what others miss. <a href="mailto:joinus@tiku-os.org">Join us</a></li>
+        <li><b>Long arc, fast iterations.</b> We are building something that lasts — but we ship early, learn fast, and improve relentlessly. Cathedrals are built one stone at a time.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025, <a href="https://ambuj.se/">Professor Ambuj Varshney</a>, WEISER Research Group
+  </footer>
+</body>
+</html>
