@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TikuOS</title>
+  <title>FAQ — TikuOS</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -166,6 +166,18 @@
     li { margin: .5rem 0; list-style: square; line-height: 1.6; }
 
     .muted { color: var(--muted); }
+
+    .faq-item { margin-bottom: 1.8rem; }
+    .faq-q {
+      font-weight: 600;
+      margin: 0 0 .4em;
+    }
+    .faq-a {
+      margin: 0 0 0;
+      padding-left: 1rem;
+      border-left: 2px solid var(--border);
+    }
+
     footer {
       max-width: 72rem;
       margin: 3rem auto 0;
@@ -200,7 +212,7 @@
   <nav class="sidebar">
     <h2>Pages</h2>
     <ul>
-      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="index.html">Home</a></li>
       <li><a href="documentation.html">Documentation</a></li>
       <li><a href="getting-started.html">Getting Started</a></li>
       <li><a href="architecture.html">Architecture</a></li>
@@ -210,29 +222,90 @@
     <ul>
       <li><a href="https://github.com/tikuos">GitHub</a></li>
       <li><a href="publications.html">Publications</a></li>
-      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="faq.html" class="active">FAQ</a></li>
     </ul>
   </nav>
 
   <main>
     <section>
-      <h2>Vision</h2>
-      <p>Imagine a world where every object has its own small mind — always sensing, thinking, but never intruding. TikuOS makes this possible. We are building a silent layer of intelligence over physical reality — tiny minds embedded in places, each with a memory and a voice. These quiet custodians offer awareness, context, and guidance to the people, robots, and AI agents that move through the world. Our goal is not to make the world "smart." It is to make our environment a responsive and intuitive partner in our lives.</p>
+      <h2>Frequently Asked Questions</h2>
+      <p>Common questions about TikuOS, its design, and how to get involved.</p>
     </section>
 
     <section>
-      <h2>Technology</h2>
-      <p>TikuOS is designed from the ground up for devices that operate on microwatts — not milliwatts, not watts. Where conventional operating systems waste power on heavyweight kernels and periodic interrupts, TikuOS is event-driven, energy-aware, and built for controllers with kilobytes of memory, not megabytes. It natively supports communication technologies that operate below the power floor of conventional wireless — backscatter, tunnel diode transmitters, and other radios that don't exist in any other OS. The result: devices you deploy and forget. For a decade. Or forever.</p>
+      <h2>General</h2>
+
+      <div class="faq-item">
+        <p class="faq-q">What is TikuOS?</p>
+        <p class="faq-a">TikuOS is an open-source operating system designed for ultra-low-power embedded devices. It targets physical AI endpoints that need to run for years on a coin cell battery or indefinitely on harvested energy.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">What does "Tiku" mean?</p>
+        <p class="faq-a">Tiku is derived from a word meaning "small" or "tiny" &mdash; reflecting the project's focus on minimal, lightweight intelligence embedded into everyday objects.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">How is TikuOS different from other embedded operating systems?</p>
+        <p class="faq-a">Unlike conventional RTOS platforms that assume milliwatt-level power budgets, TikuOS is built from the ground up for microwatt operation. It is fully event-driven, energy-aware, and natively supports sub-conventional radios like backscatter and tunnel diode transmitters.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">What license is TikuOS released under?</p>
+        <p class="faq-a">TikuOS is fully open source under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>.</p>
+      </div>
     </section>
 
     <section>
-      <h2>Origins</h2>
-      <p>TikuOS is the result of a decade of research across three continents, recognized by flagship awards from Google and ABB, supported by national agencies across Asia and Europe, and validated through peer-reviewed publications at the top scientific venues in the field. It is built on hard-won lessons from real hardware, real deployments, and real failures.</p>
+      <h2>Hardware &amp; Compatibility</h2>
+
+      <div class="faq-item">
+        <p class="faq-q">What hardware does TikuOS support?</p>
+        <p class="faq-a">TikuOS targets microcontrollers with kilobytes of RAM and flash. Specific board support packages and supported platforms will be listed in the documentation as they become available.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">What communication technologies does TikuOS support?</p>
+        <p class="faq-a">TikuOS natively supports backscatter communication, tunnel diode transmitters, and other radios that operate below the power floor of conventional wireless. Support for standard protocols is planned.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">Can TikuOS run on battery-free devices?</p>
+        <p class="faq-a">Yes. TikuOS is designed for devices powered by energy harvesting &mdash; solar, RF, thermal, or mechanical &mdash; and can operate indefinitely without a battery.</p>
+      </div>
     </section>
 
-<section>
-      <h2>Open Source</h2>
-      <p>TikuOS is fully open source, licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>. We believe that infrastructure this fundamental belongs to everyone. Browse the code, report issues, or contribute on <a href="https://github.com/tikuos">GitHub</a>.</p>
+    <section>
+      <h2>Getting Started</h2>
+
+      <div class="faq-item">
+        <p class="faq-q">How do I get started with TikuOS?</p>
+        <p class="faq-a">Visit the <a href="getting-started.html">Getting Started</a> page for setup instructions, or browse the source code on <a href="https://github.com/tikuos">GitHub</a>.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">Is there documentation available?</p>
+        <p class="faq-a">Documentation is being actively developed. See the <a href="documentation.html">Documentation</a> and <a href="api.html">API Reference</a> pages for the latest material.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Contributing</h2>
+
+      <div class="faq-item">
+        <p class="faq-q">How can I contribute to TikuOS?</p>
+        <p class="faq-a">We welcome contributions of all kinds &mdash; code, documentation, bug reports, and hardware ports. Start by exploring the <a href="https://github.com/tikuos">GitHub repository</a>, opening an issue, or submitting a pull request.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">Who maintains TikuOS?</p>
+        <p class="faq-a">TikuOS is maintained by <a href="https://ambuj.se/">Professor Ambuj Varshney</a> and the WEISER Research Group, building on over a decade of research across three continents.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">Where can I report bugs or request features?</p>
+        <p class="faq-a">Please use the <a href="https://github.com/tikuos/issues">GitHub issue tracker</a> to report bugs or suggest new features.</p>
+      </div>
     </section>
   </main>
   </div><!-- .content-layout -->

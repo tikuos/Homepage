@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Publications — TikuOS</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --text: #0b0b0c;
+      --muted: #6b7280;
+      --bg: #ffffff;
+      --focus: #111;
+      --border: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      margin: 0;
+      padding: 2.5rem 1rem;
+      color: var(--text);
+      background: var(--bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
+      font-size: 0.88rem;
+      line-height: 1.65;
+      text-wrap: pretty;
+    }
+    :focus-visible {
+      outline: 1px dotted var(--focus);
+      outline-offset: .2em;
+      border-radius: 2px;
+    }
+
+    .page-wrapper {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .content-layout {
+      display: flex;
+      gap: 3rem;
+    }
+
+    nav.sidebar {
+      flex-shrink: 0;
+      width: 10rem;
+      position: sticky;
+      top: 2rem;
+      align-self: flex-start;
+    }
+    nav.sidebar h2 {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted);
+      margin: 0 0 .6em;
+      padding-bottom: .35em;
+      border-bottom: 1px solid var(--border);
+    }
+    nav.sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.4em;
+    }
+    nav.sidebar li {
+      margin: 0;
+      list-style: none;
+    }
+    nav.sidebar a {
+      display: block;
+      padding: .3em 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    nav.sidebar a:hover {
+      color: var(--text);
+      text-decoration: none;
+    }
+    nav.sidebar a.active {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    main { flex: 1; min-width: 0; }
+
+    header {
+      max-width: 72rem;
+      margin: 0 auto 2.5rem;
+      padding-bottom: 1.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .header-row {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .logo {
+      width: 4.5rem;
+      height: 4.5rem;
+      object-fit: contain;
+      flex-shrink: 0;
+      border-radius: 0.4rem;
+    }
+
+    h1, h2, h3 { margin: 0 0 .6em; line-height: 1.15; }
+    p { margin: 0 0 1.3em; }
+    a { color: inherit; text-decoration: underline; text-underline-offset: .2em; }
+    a:hover { text-decoration-style: dotted; }
+
+    .headline {
+      font-family: "Chakra Petch", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-size: clamp(1.1rem, 2.2vw, 2.25rem);
+      margin-bottom: .4em;
+      white-space: nowrap;
+    }
+
+    .subtitle {
+      font-size: 0.88rem;
+      color: #3a3a3a;
+      font-weight: 600;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .gradient-text {
+      position: relative;
+      display: block;
+      color: #000;
+      background: #fff;
+      border: 1px solid #fff;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .gradient-text::after {
+      content: "";
+      position: absolute; inset: -40% -40%;
+      background: linear-gradient(90deg, #565151, #d2caca);
+      mix-blend-mode: screen;
+      transform: rotate(0deg);
+      animation: rotate 8s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes rotate { to { transform: rotate(360deg); } }
+
+    section { margin-bottom: 2.2rem; }
+    section h2 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted);
+      margin-bottom: .8em;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: .4em;
+    }
+
+    ul { padding-left: 1.1rem; margin: 0 0 1.2em; }
+    li { margin: .5rem 0; list-style: square; line-height: 1.6; }
+
+    .muted { color: var(--muted); }
+
+    .pub { margin-bottom: 1.6rem; }
+    .pub-title { font-weight: 600; margin-bottom: .2em; }
+    .pub-authors, .pub-venue { margin: 0 0 .15em; }
+    .pub-venue { color: var(--muted); font-style: italic; }
+    .pub-award {
+      display: inline-block;
+      margin-top: .25em;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #92400e;
+      background: #fef3c7;
+      padding: .15em .5em;
+      border-radius: 3px;
+    }
+    .pub-doi {
+      display: block;
+      margin-top: .3em;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    footer {
+      max-width: 72rem;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 700px) {
+      body { padding: 1.5rem 0.75rem; }
+      .content-layout { flex-direction: column; gap: 1.5rem; }
+      nav.sidebar { width: 100%; position: static; }
+      nav.sidebar ul { display: flex; flex-wrap: wrap; gap: 0 1.2em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+  <header>
+    <div class="header-row">
+      <img src="logo.jpeg" alt="TikuOS logo" class="logo" />
+      <div>
+        <h1 class="headline gradient-text">TikuOS: Simple. Ubiquitous. Intelligence, Everywhere.</h1>
+        <p class="subtitle">An open-source operating system for physical AI endpoints.<br>Deploy-and-forget devices that run for years on a coin cell or indefinitely on harvested energy.</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="content-layout">
+  <nav class="sidebar">
+    <h2>Pages</h2>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="documentation.html">Documentation</a></li>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="architecture.html">Architecture</a></li>
+      <li><a href="api.html">API Reference</a></li>
+    </ul>
+    <h2>Resources</h2>
+    <ul>
+      <li><a href="https://github.com/tikuos">GitHub</a></li>
+      <li><a href="publications.html" class="active">Publications</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section>
+      <h2>Publications</h2>
+      <p>The research behind TikuOS spans over a decade of work in ultra-low-power systems, backscatter communication, and energy harvesting. Below is a selection of key publications organized by topic.</p>
+    </section>
+
+    <section>
+      <h2>Overview</h2>
+      <div class="pub">
+        <p class="pub-title">Making Low-power and Long-range Wireless Backscatter Transmitters</p>
+        <p class="pub-authors"><strong>Ambuj Varshney</strong></p>
+        <p class="pub-venue">ACM GetMobile: Mobile Computing and Communications (Maker Edition) 2022</p>
+        <a class="pub-doi" href="https://doi.org/10.1145/3551670.3551672">doi.org/10.1145/3551670.3551672</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Human Computer Interaction</h2>
+      <div class="pub">
+        <p class="pub-title">Battery-free Visible Light Sensing</p>
+        <p class="pub-authors"><strong>Ambuj Varshney</strong>, Andreas Soleiman, Luca Mottola, Thiemo Voigt</p>
+        <p class="pub-venue">ACM VLCS (Co-located with ACM MobiCom) 2017</p>
+        <span class="pub-award">Best Paper Award</span>
+        <span class="pub-award">ACM Student Research Competition Winner (Graduate, MobiCom)</span>
+        <a class="pub-doi" href="https://doi.org/10.1145/3129881.3129890">doi.org/10.1145/3129881.3129890</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Sensing</h2>
+      <div class="pub">
+        <p class="pub-title">TunnelLiFi: Bringing LiFi to Commodity Devices</p>
+        <p class="pub-authors">Muhammad Sarmad Mir, Wenqing Yan, Prabal Dutta, Domenico Giustiniano, and <strong>Ambuj Varshney</strong></p>
+        <p class="pub-venue">The Twenty-fourth International Workshop on Mobile Computing Systems and Applications (ACM HotMobile 2023)</p>
+        <a class="pub-doi" href="https://doi.org/10.1145/3572864.3580327">doi.org/10.1145/3572864.3580327</a>
+      </div>
+      <div class="pub">
+        <p class="pub-title">POSTER: Enabling L3: Low Cost, Low Complexity and Low Power Radio Frequency Sensing using Tunnel Diodes</p>
+        <p class="pub-authors">Wenqing Yan, <strong>Ambuj Varshney</strong></p>
+        <p class="pub-venue">The Twenty Eighth Annual International Conference On Mobile Computing And Networking (ACM MobiCom 2022)</p>
+        <a class="pub-doi" href="https://doi.org/10.1145/3495243.3558281">doi.org/10.1145/3495243.3558281</a>
+      </div>
+      <div class="pub">
+        <p class="pub-title">Demonstration: Towards Battery-free Radio Tomographic Imaging</p>
+        <p class="pub-authors">Abdullah Hylamia, <strong>Ambuj Varshney</strong>, Andreas Soleiman, et al.</p>
+        <p class="pub-venue">The Eleventh ACM Conference on Security and Privacy in Wireless and Mobile Networks (ACM WiSec 2018)</p>
+        <span class="pub-award">Best Demonstration Award</span>
+        <a class="pub-doi" href="https://doi.org/10.1145/3212480.3226107">doi.org/10.1145/3212480.3226107</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Transmission</h2>
+      <div class="pub">
+        <p class="pub-title">Judo: Addressing the Energy Asymmetry of Wireless Embedded Systems through Tunnel Diode based Wireless Transmitters</p>
+        <p class="pub-authors"><strong>Ambuj Varshney</strong>, Wenqing Yan, Prabal Dutta</p>
+        <p class="pub-venue">The Twentieth ACM International Conference on Mobile Systems, Applications, and Services (ACM MobiSys 2022)</p>
+        <a class="pub-doi" href="https://doi.org/10.1145/3498361.3538923">doi.org/10.1145/3498361.3538923</a>
+      </div>
+      <div class="pub">
+        <p class="pub-title">TunnelEmitter: Tunnel Diode based Low-Power Carrier Emitters for Backscatter Tags</p>
+        <p class="pub-authors"><strong>Ambuj Varshney</strong>, Lorenzo Corneo</p>
+        <p class="pub-venue">The Twenty Sixth Annual International Conference On Mobile Computing And Networking (ACM MobiCom 2020)</p>
+        <a class="pub-doi" href="https://doi.org/10.1145/3372224.3419199">doi.org/10.1145/3372224.3419199</a>
+      </div>
+      <div class="pub">
+        <p class="pub-title">TunnelScatter: Low Power Communication for Sensor Tags using Tunnel Diodes</p>
+        <p class="pub-authors"><strong>Ambuj Varshney</strong>, Andreas Soleiman, Thiemo Voigt</p>
+        <p class="pub-venue">The Twenty Fifth Annual International Conference On Mobile Computing And Networking (ACM MobiCom 2019)</p>
+        <a class="pub-doi" href="https://doi.org/10.1145/3300061.3345451">doi.org/10.1145/3300061.3345451</a>
+      </div>
+      <div class="pub">
+        <p class="pub-title">LoRea: A Backscatter Architecture that Achieves a Long Communication Range</p>
+        <p class="pub-authors"><strong>Ambuj Varshney</strong>, Oliver Harms, Carlos Penichet, Christian Rohner, Frederik Hermans, Thiemo Voigt</p>
+        <p class="pub-venue">Fifteenth ACM Conference on Embedded Networked Sensor Systems (ACM SenSys 2017)</p>
+        <span class="pub-award">2019 ABB Research Award Winner</span>
+        <a class="pub-doi" href="https://doi.org/10.1145/3131672.3136996">doi.org/10.1145/3131672.3136996</a>
+      </div>
+      <div class="pub">
+        <p class="pub-title">Towards wide-area backscatter networks</p>
+        <p class="pub-authors"><strong>Ambuj Varshney</strong>, Carlos Perez Penichet, Christian Rohner, Thiemo Voigt</p>
+        <p class="pub-venue">ACM HotWireless (Co-located with ACM MobiCom) 2017</p>
+        <a class="pub-doi" href="https://doi.org/10.1145/3127882.3127888">doi.org/10.1145/3127882.3127888</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Reception</h2>
+      <div class="pub">
+        <p class="pub-title">Two to Tango: Hybrid Light and Backscatter Networks for Next Billion Devices</p>
+        <p class="pub-authors"><strong>Ambuj Varshney</strong>, Ander Galiesto, Domenico Giustiniano</p>
+        <p class="pub-venue">The Eighteenth ACM International Conference on Mobile Systems, Applications, and Services (ACM MobiSys 2020)</p>
+        <a class="pub-doi" href="https://doi.org/10.1145/3386901.3388918">doi.org/10.1145/3386901.3388918</a>
+      </div>
+      <div class="pub">
+        <p class="pub-title">Connecting Battery-free IoT Tags Using LED Bulbs</p>
+        <p class="pub-authors">Domenico Giustiniano, <strong>Ambuj Varshney</strong>, Thiemo Voigt</p>
+        <p class="pub-venue">The Eighteenth ACM Workshop on Hot Topics in Networks (ACM HotNets 2019)</p>
+        <a class="pub-doi" href="https://doi.org/10.1145/3286062.3286077">doi.org/10.1145/3286062.3286077</a>
+      </div>
+      <div class="pub">
+        <p class="pub-title">Battery-free 802.15.4 Receiver</p>
+        <p class="pub-authors">Carlos Perez Penichet, Claro Noda, <strong>Ambuj Varshney</strong>, Thiemo Voigt</p>
+        <p class="pub-venue">The Seventeenth ACM/IEEE Conference on Information Processing in Sensor Networks (ACM/IEEE IPSN 2018)</p>
+        <a class="pub-doi" href="https://doi.org/10.1109/IPSN.2018.00045">doi.org/10.1109/IPSN.2018.00045</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Storage</h2>
+      <p class="muted">To be announced.</p>
+    </section>
+
+    <section>
+      <h2>Processing</h2>
+      <p class="muted">To be announced.</p>
+    </section>
+
+    <section>
+      <h2>Security</h2>
+      <div class="pub">
+        <p class="pub-title">Securing Battery-free Backscatter Tags through Fingerprinting</p>
+        <p class="pub-authors">Revathy Narayanan, <strong>Ambuj Varshney</strong>, et al.</p>
+        <p class="pub-venue">The Twentieth ACM Workshop on Hot Topics in Networks (ACM HotNets 2021)</p>
+        <a class="pub-doi" href="https://doi.org/10.1145/3484266.3487388">doi.org/10.1145/3484266.3487388</a>
+      </div>
+    </section>
+  </main>
+  </div><!-- .content-layout -->
+  </div><!-- .page-wrapper -->
+
+  <footer>
+    &copy; 2025, <a href="https://ambuj.se/">Professor Ambuj Varshney</a>, WEISER Research Group &middot; <a href="https://github.com/tikuos">GitHub</a> &middot; Apache 2.0
+  </footer>
+</body>
+</html>
